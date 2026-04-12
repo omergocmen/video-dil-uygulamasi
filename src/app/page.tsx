@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { useTheme } from '@/context/ThemeProvider';
 import { useAuth } from '@/context/AuthContext';
 import { useData } from '@/context/DataContext';
+import Header from '@/components/Header';
 
 const PANDA_SVG = (
   <svg viewBox="0 0 100 100" className="w-16 h-16">
@@ -197,79 +198,35 @@ function HomeContent() {
         </div>
       )}
       
-      <header className="transition-all duration-300 sticky top-0 z-30"
-        style={{ 
-          background: 'var(--card-bg)', 
-          borderBottom: '1px solid var(--card-border)',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
-        }}>
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-3xl font-bold flex items-center gap-3" style={{ color: 'var(--foreground)' }}>
-            <span className={`transition-transform duration-300 ${pandaState === 'happy' ? 'animate-panda-happy' : pandaState === 'sad' ? 'animate-panda-sad' : 'hover:scale-110'}`}>
+      <Header
+        leftContent={
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className={`w-16 h-16 transition-transform duration-300 ${pandaState === 'happy' ? 'animate-panda-happy' : pandaState === 'sad' ? 'animate-panda-sad' : 'group-hover:scale-110 group-hover:rotate-6'}`}>
               {getPandaSvg()}
-            </span>
-            <span className="bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+            </div>
+            <span className="text-3xl font-extrabold bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent transform group-hover:scale-105 transition-transform duration-300 hidden md:block">
               LingoMaster
             </span>
-          </h1>
-          <div className="flex items-center gap-3">
+          </Link>
+        }
+        showDefaultAuth={isAuthenticated}
+        rightContent={
+          !isAuthenticated && (
             <button
-              onClick={toggleTheme}
-              className="p-3 rounded-xl transition-all duration-300 hover:scale-110"
-              style={{ 
-                background: 'var(--primary)', 
-                color: 'white',
-                boxShadow: '0 4px 15px rgba(34, 197, 94, 0.3)'
-              }}
-              title={theme === 'light' ? 'Dark mode\'a geç' : 'Light mode\'a geç'}
+              onClick={() => setShowLoginModal(true)}
+              className="px-6 py-2.5 rounded-xl font-bold transition-all duration-300 hover:scale-105 shadow-md hover:shadow-xl relative overflow-hidden group border border-transparent hover:border-white/20"
+              style={{ background: 'var(--primary)', color: 'white' }}
             >
-              {theme === 'light' ? '🌙' : '☀️'}
-            </button>
-            {isAuthenticated ? (
-              <div className="flex items-center gap-3">
-                <span className="text-sm font-medium px-3 py-1 rounded-full"
-                  style={{ background: 'var(--secondary)', color: 'var(--foreground)' }}>
-                  👤 {user?.username}
-                </span>
-                <Link
-                  href="/admin"
-                  className="px-4 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105"
-                  style={{ 
-                    background: 'var(--primary)', 
-                    color: 'white',
-                    boxShadow: '0 4px 15px rgba(34, 197, 94, 0.3)'
-                  }}
-                >
-                  ⚙️ Admin
-                </Link>
-                <button
-                  onClick={logout}
-                  className="px-4 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105"
-                  style={{ 
-                    background: '#ef4444', 
-                    color: 'white',
-                    boxShadow: '0 4px 15px rgba(239, 68, 68, 0.3)'
-                  }}
-                >
-                  Çıkış
-                </button>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[150%] h-full bg-white/30 translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-700 ease-in-out skew-x-[-20deg]"></div>
               </div>
-            ) : (
-              <button
-                onClick={() => setShowLoginModal(true)}
-                className="px-6 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105"
-                style={{ 
-                  background: 'var(--primary)', 
-                  color: 'white',
-                  boxShadow: '0 4px 15px rgba(34, 197, 94, 0.3)'
-                }}
-              >
-                🔐 Giriş Yap
-              </button>
-            )}
-          </div>
-        </div>
-      </header>
+              <span className="relative z-10 flex items-center gap-2">
+                <span>🔐</span> Giriş Yap
+              </span>
+            </button>
+          ) || undefined
+        }
+      />
 
       <main className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center mb-12">
