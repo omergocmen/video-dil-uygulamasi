@@ -521,6 +521,8 @@ function LoadingFallback() {
   );
 }
 
+export const dynamic = 'force-dynamic';
+
 export default function HomePage() {
   return (
     <Suspense fallback={<LoadingFallback />}>
