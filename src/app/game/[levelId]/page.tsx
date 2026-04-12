@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useData } from '@/context/DataContext';
 import { Level, Question, GameState, QuestionType } from '@/types';
 import ChatBot from '@/components/ChatBot';
+import Header from '@/components/Header';
 
 const PANDA_HAPPY = (
   <svg viewBox="0 0 100 100" className="w-20 h-20">
@@ -316,26 +317,36 @@ export default function GamePage() {
   return (
     <div className="min-h-screen transition-colors duration-300"
       style={{ background: 'linear-gradient(135deg, var(--primary), var(--secondary))' }}>
-      <header className="transition-all duration-300"
-        style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', borderBottom: '1px solid rgba(255,255,255,0.2)' }}>
-        <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-white hover:text-white/80 transition-colors">
-            ← Geri
-          </Link>
-          <div className="flex items-center gap-2">
-            <span className={pandaMood === 'happy' ? 'animate-panda-happy' : pandaMood === 'sad' ? 'animate-panda-sad' : ''}>
-              {pandaMood === 'happy' ? PANDA_HAPPY : pandaMood === 'sad' ? PANDA_SAD : PANDA_NORMAL}
-            </span>
-            <h1 className="text-xl font-bold text-white">{level?.title || `Bölüm ${levelId}`}</h1>
+      <Header
+        leftContent={
+          <div className="flex items-center gap-6">
+            <Link
+              href="/"
+              className="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-xl font-bold transition-all duration-300"
+            >
+              ← Geri
+            </Link>
+            <div className="hidden md:flex items-center gap-3">
+              <div className={`w-12 h-12 transition-transform duration-300 ${pandaMood === 'happy' ? 'animate-panda-happy' : pandaMood === 'sad' ? 'animate-panda-sad' : ''}`}>
+                {pandaMood === 'happy' ? PANDA_HAPPY : pandaMood === 'sad' ? PANDA_SAD : PANDA_NORMAL}
+              </div>
+              <h1 className="text-2xl font-bold text-white tracking-wide drop-shadow-md">
+                {level?.title || `Bölüm ${levelId}`}
+              </h1>
+            </div>
           </div>
+        }
+        rightContent={
           <button
             onClick={() => setShowChat(!showChat)}
-            className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg font-medium transition-all"
+            className="px-5 py-2.5 rounded-xl font-bold transition-all duration-300 shadow-lg hover:scale-105"
+            style={{ background: 'var(--primary)', color: 'white', border: '1px solid rgba(255,255,255,0.3)' }}
           >
             🤖 AI Tutor
           </button>
-        </div>
-      </header>
+        }
+        showDefaultAuth={false}
+      />
 
       <div className="max-w-4xl mx-auto px-4 pt-6">
         <div className="rounded-full h-4 overflow-hidden bg-white/20">
