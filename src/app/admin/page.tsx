@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useData } from '@/context/DataContext';
 import { Level, Question, QuestionType } from '@/types';
+import Header from '@/components/Header';
 
 export default function AdminPage() {
   const router = useRouter();
@@ -236,41 +237,37 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--background)' }}>
-      <header className="card shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>⚙️ Admin Paneli</h1>
-          <div className="flex items-center gap-3">
-            {user && (
-              <span className="text-sm font-medium px-3 py-1 rounded-full"
-                style={{ background: 'var(--secondary)', color: 'var(--foreground)' }}>
-                👤 {user.username}
-              </span>
-            )}
+      <Header
+        leftContent={
+          <h1 className="text-2xl font-extrabold flex items-center gap-2">
+            <span className="text-3xl">⚙️</span>
+            <span className="bg-gradient-to-r from-gray-500 to-gray-700 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
+              Admin Paneli
+            </span>
+          </h1>
+        }
+        rightContent={
+          <>
             <Link
               href="/"
-              className="px-4 py-2 rounded-lg font-medium transition-all hover:scale-105"
-              style={{ 
-                background: 'var(--primary)', 
-                color: 'white',
-                boxShadow: '0 4px 15px rgba(34, 197, 94, 0.3)'
-              }}
+              className="px-5 py-2.5 rounded-xl font-bold transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg relative overflow-hidden group"
+              style={{ background: 'var(--primary)', color: 'white' }}
             >
-              ← Ana Sayfaya Dön
+              <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-[0%] transition-transform duration-300"></div>
+              <span className="relative z-10">← Ana Sayfa</span>
             </Link>
             <button
               onClick={logout}
-              className="px-4 py-2 rounded-lg font-medium transition-all hover:scale-105"
-              style={{ 
-                background: '#ef4444', 
-                color: 'white',
-                boxShadow: '0 4px 15px rgba(239, 68, 68, 0.3)'
-              }}
+              className="px-5 py-2.5 rounded-xl font-bold transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg relative overflow-hidden group"
+              style={{ background: '#ef4444', color: 'white' }}
             >
-              Çıkış
+              <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-[0%] transition-transform duration-300"></div>
+              <span className="relative z-10">Çıkış</span>
             </button>
-          </div>
-        </div>
-      </header>
+          </>
+        }
+        showDefaultAuth={false}
+      />
 
       <div className="max-w-7xl mx-auto px-4 pt-6">
         <div className="flex gap-4 border-b" style={{ borderColor: 'var(--card-border)' }}>
