@@ -1,0 +1,709 @@
+[
+  {
+    "id": "TC001",
+    "title": "Complete a level and unlock the next level",
+    "description": "Verifies a learner can start an unlocked level, answer questions with feedback, complete the level, and see the next level become unlocked after a reload.",
+    "category": "Answer Questions and Track Progress",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the registration flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the registration email field with a unique valid email"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the registration password field with a valid password"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "action",
+        "description": "Start the first unlocked level"
+      },
+      {
+        "type": "action",
+        "description": "Answer the current question with a valid response"
+      },
+      {
+        "type": "action",
+        "description": "Proceed to the next question until the level ends"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a level completion confirmation is visible"
+      },
+      {
+        "type": "action",
+        "description": "Refresh the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the next level is shown as unlocked on the level list"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Log in and see learning progress with available levels",
+    "description": "Verifies an existing learner can log in from the home page and see the authenticated interface showing levels and progress.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login modal"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is in an authenticated state with a levels list displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Register new user and land in logged-in state",
+    "description": "Verifies a new learner can register with valid details and immediately reach the authenticated experience with levels visible.",
+    "category": "User Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login modal"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the registration form"
+      },
+      {
+        "type": "action",
+        "description": "Fill learner_{{RANDOM}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill learner_{{RANDOM}}@example.com into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill ValidPass123! into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is logged in and a levels list is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Browse levels and start an unlocked level",
+    "description": "Verifies a logged-in learner can view locked vs unlocked levels on the home page and start an unlocked level to see the first question.",
+    "category": "Browse and Start Levels",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login modal"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Select an unlocked level from the levels list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the level view opens and the first question is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Resume progress as a returning learner and continue to the next unlocked level",
+    "description": "Verifies a learner can log in, see prior progress reflected on the level list, and start the next unlocked level.",
+    "category": "Answer Questions and Track Progress",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "View the level list"
+      },
+      {
+        "type": "action",
+        "description": "Start the next unlocked level"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a question is displayed for the started level"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Validate empty answer submission within a level",
+    "description": "Verifies submitting an empty answer shows a validation message and prevents progressing until a valid answer is provided.",
+    "category": "Answer Questions and Track Progress",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Start an unlocked level"
+      },
+      {
+        "type": "action",
+        "description": "Submit the answer without providing a response"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an answer validation error is visible"
+      },
+      {
+        "type": "action",
+        "description": "Provide a valid answer to the question"
+      },
+      {
+        "type": "action",
+        "description": "Submit the answer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify correct or incorrect feedback is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Get help from AI Tutor while in a level",
+    "description": "Verifies a learner can open the AI Tutor, submit a question during gameplay, and see a response in the widget.",
+    "category": "AI Tutor",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Start an unlocked level"
+      },
+      {
+        "type": "action",
+        "description": "Open the AI Tutor widget"
+      },
+      {
+        "type": "action",
+        "description": "Type a question about the current exercise into the tutor input"
+      },
+      {
+        "type": "action",
+        "description": "Submit the tutor question"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an AI Tutor response is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Answer multiple choice and fill-in-the-blank questions with feedback",
+    "description": "Verifies a learner can interact with multiple question types, submit answers, receive immediate feedback, and continue through questions.",
+    "category": "Answer Questions and Track Progress",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Start an unlocked level"
+      },
+      {
+        "type": "action",
+        "description": "If the question is multiple choice, select an answer option"
+      },
+      {
+        "type": "action",
+        "description": "If the question is fill-in-the-blank, fill a non-empty answer into the input field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the answer"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify correct or incorrect feedback is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Move to the next question"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the next question is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Advance to the next question after submitting an answer",
+    "description": "Verifies that after submitting an answer and receiving feedback, the learner can proceed to the next question in the level.",
+    "category": "Answer Questions and Track Progress",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Start an unlocked level"
+      },
+      {
+        "type": "action",
+        "description": "Answer the current question with a valid response"
+      },
+      {
+        "type": "action",
+        "description": "Submit the answer"
+      },
+      {
+        "type": "action",
+        "description": "Proceed to the next question"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a different question is displayed than before"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Create a new level in the admin panel",
+    "description": "Verifies an administrator can create a new level and see it appear in the admin level list.",
+    "category": "Admin: Manage Levels and Questions",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the admin panel"
+      },
+      {
+        "type": "action",
+        "description": "Start creating a new level"
+      },
+      {
+        "type": "action",
+        "description": "Fill a unique level title into the title field"
+      },
+      {
+        "type": "action",
+        "description": "Fill valid metadata into required fields"
+      },
+      {
+        "type": "action",
+        "description": "Submit the new level form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new level appears in the admin level list"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC011",
+    "title": "Add multiple question types to a level in admin",
+    "description": "Verifies an administrator can add a multiple-choice and a fill-in-the-blank question to a level and see both listed for that level.",
+    "category": "Admin: Manage Levels and Questions",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the admin panel"
+      },
+      {
+        "type": "action",
+        "description": "Create a new level with a unique title"
+      },
+      {
+        "type": "action",
+        "description": "Open the newly created level's details"
+      },
+      {
+        "type": "action",
+        "description": "Select the multiple-choice question type"
+      },
+      {
+        "type": "action",
+        "description": "Fill valid multiple-choice question content and answer options"
+      },
+      {
+        "type": "action",
+        "description": "Submit the question form"
+      },
+      {
+        "type": "action",
+        "description": "Select the fill-in-the-blank question type"
+      },
+      {
+        "type": "action",
+        "description": "Fill valid fill-in-the-blank prompt and expected answer"
+      },
+      {
+        "type": "action",
+        "description": "Submit the question form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify both newly added questions are listed under the level"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC012",
+    "title": "Prevent starting a locked level from the level list",
+    "description": "Verifies a learner cannot start a locked level from the home level list.",
+    "category": "Answer Questions and Track Progress",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Locate a level shown as locked"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to start the locked level"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the locked level does not open into gameplay"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC013",
+    "title": "Delete a question from a level in admin with confirmation",
+    "description": "Verifies an administrator can delete a question from a level after confirming and the question is removed from the list.",
+    "category": "Admin: Manage Levels and Questions",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login flow"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to open the admin panel"
+      },
+      {
+        "type": "action",
+        "description": "Create a new level with a unique title"
+      },
+      {
+        "type": "action",
+        "description": "Open the newly created level's details"
+      },
+      {
+        "type": "action",
+        "description": "Add a new question with valid content"
+      },
+      {
+        "type": "action",
+        "description": "Initiate deletion of the question"
+      },
+      {
+        "type": "action",
+        "description": "Confirm deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the deleted question is no longer shown in the question list"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC014",
+    "title": "Validate email format during registration",
+    "description": "Verifies registration blocks submission with an invalid email format and displays an email validation error.",
+    "category": "User Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login modal"
+      },
+      {
+        "type": "action",
+        "description": "Switch to the registration form"
+      },
+      {
+        "type": "action",
+        "description": "Fill learner_{{RANDOM}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill invalid-email into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill ValidPass123! into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the registration form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an email format validation error is visible and the user is not registered/logged in"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC015",
+    "title": "Reject login with incorrect credentials",
+    "description": "Verifies a learner attempting to log in with an incorrect password remains unauthenticated and sees a login failure indication.",
+    "category": "User Login",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the login modal"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the username field"
+      },
+      {
+        "type": "action",
+        "description": "Fill invalid-password into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a login error is visible and the user remains unauthenticated"
+      }
+    ],
+    "priority": "Low"
+  }
+]

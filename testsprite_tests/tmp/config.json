@@ -1,0 +1,20 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3001",
+  "loginUser": "test",
+  "loginPassword": "test11",
+  "executionArgs": {
+    "projectName": "video-dil-ornegi",
+    "projectPath": "c:\\Users\\Ömer\\Desktop\\video-dil-uygulamasi\\video-dil-ornegi",
+    "testIds": [],
+    "additionalInstruction": "",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-uzoMsJzI5nDcdfJWvt6QkMFrpdmqQM8_ejWNE7l_QtIGxZU7X1Mz-Asm7VuvVbdqR_c_gEdHpCKEFJofxz-V0bjrFZlOh2LyaLp2De3nJO8D1JM_NHl41_plHxjJyU9yDsU"
+    }
+  },
+  "serverPort": 53271,
+  "proxy": "http://a5718e47-2a46-43c3-b9b2-d596a08dd438:E6LLnZymOlDgHpQ7TsIhRPzYiRu20Lvj@tun.testsprite.com:8080"
+}

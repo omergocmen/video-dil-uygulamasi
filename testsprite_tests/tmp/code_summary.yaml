@@ -1,0 +1,50 @@
+version: "2"
+type: frontend
+tech_stack:
+  - Typescript
+  - Next.js
+  - Tailwind CSS
+  - React
+routes:
+  - path: /
+    file: src/app/page.tsx
+    auth_required: false
+    description: Home and Login page
+  - path: /game/[level]
+    file: src/app/game/page.tsx
+    auth_required: true
+    description: Game level page
+  - path: /admin
+    file: src/app/admin/page.tsx
+    auth_required: true
+    description: Admin CRUD page
+features:
+  - name: User Login
+    description: Login with username and password
+    files:
+      - src/app/page.tsx
+      - src/context/AuthContext.tsx
+    entry_route: /
+    user_interactions:
+      - Click 'Giriş Yap' to open the modal
+      - Fill username input field
+      - Fill password input field
+      - Click 'Giriş Yap' button to submit
+    api_calls: []
+    auth_required: false
+  - name: User Registration
+    description: Register with username, email, and password
+    files:
+      - src/app/page.tsx
+      - src/context/AuthContext.tsx
+    entry_route: /
+    user_interactions:
+      - Click 'Giriş Yap' to open the modal
+      - Click 'Hesabınız yok mu? Kayıt olun'
+      - Fill username input field
+      - Fill email input field
+      - Fill password input field
+      - Click 'Kayıt Ol' button to submit
+    api_calls: []
+    auth_required: false
+known_limitations: []
