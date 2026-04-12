@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useTheme } from '@/context/ThemeProvider';
@@ -9,28 +9,19 @@ import { useData } from '@/context/DataContext';
 
 const PANDA_SVG = (
   <svg viewBox="0 0 100 100" className="w-16 h-16">
-    {/* Kulaklar */}
     <circle cx="22" cy="22" r="14" fill="#1f2937" />
     <circle cx="78" cy="22" r="14" fill="#1f2937" />
-    {/* Yüz */}
     <ellipse cx="50" cy="52" rx="40" ry="36" fill="white" stroke="#e5e7eb" strokeWidth="1" />
-    {/* Göz çevresi siyah alanlar */}
     <ellipse cx="32" cy="45" rx="13" ry="11" fill="#1f2937" />
     <ellipse cx="68" cy="45" rx="13" ry="11" fill="#1f2937" />
-    {/* Göz beyazları */}
     <ellipse cx="32" cy="44" rx="7" ry="8" fill="white" />
     <ellipse cx="68" cy="44" rx="7" ry="8" fill="white" />
-    {/* Göz bebekleri */}
     <circle cx="33" cy="44" r="4" fill="#1f2937" />
     <circle cx="69" cy="44" r="4" fill="#1f2937" />
-    {/* Göz parıltısı */}
     <circle cx="35" cy="42" r="1.5" fill="white" />
     <circle cx="71" cy="42" r="1.5" fill="white" />
-    {/* Burun */}
     <ellipse cx="50" cy="56" rx="6" ry="4" fill="#1f2937" />
-    {/* Ağız */}
     <path d="M 44 62 Q 50 68 56 62" stroke="#1f2937" strokeWidth="2" fill="none" strokeLinecap="round" />
-    {/* Yanak pembeliği */}
     <ellipse cx="22" cy="55" rx="6" ry="4" fill="#fca5a5" opacity="0.6" />
     <ellipse cx="78" cy="55" rx="6" ry="4" fill="#fca5a5" opacity="0.6" />
   </svg>
@@ -38,22 +29,15 @@ const PANDA_SVG = (
 
 const PANDA_HAPPY_SVG = (
   <svg viewBox="0 0 100 100" className="w-16 h-16">
-    {/* Kulaklar */}
     <circle cx="22" cy="22" r="14" fill="#1f2937" />
     <circle cx="78" cy="22" r="14" fill="#1f2937" />
-    {/* Yüz */}
     <ellipse cx="50" cy="52" rx="40" ry="36" fill="white" stroke="#e5e7eb" strokeWidth="1" />
-    {/* Göz çevresi siyah alanlar - kapalı mutlu gözler */}
     <path d="M 22 45 Q 32 38 42 45" stroke="#1f2937" strokeWidth="4" fill="none" strokeLinecap="round" />
     <path d="M 58 45 Q 68 38 78 45" stroke="#1f2937" strokeWidth="4" fill="none" strokeLinecap="round" />
-    {/* Burun */}
     <ellipse cx="50" cy="56" rx="6" ry="4" fill="#1f2937" />
-    {/* Geniş gülümseme */}
     <path d="M 38 62 Q 50 74 62 62" stroke="#1f2937" strokeWidth="2.5" fill="#fca5a5" strokeLinecap="round" />
-    {/* Yanak pembeliği */}
     <ellipse cx="20" cy="55" rx="7" ry="5" fill="#fca5a5" opacity="0.7" />
     <ellipse cx="80" cy="55" rx="7" ry="5" fill="#fca5a5" opacity="0.7" />
-    {/* Yıldızlar */}
     <text x="10" y="20" fontSize="12" fill="#fbbf24">✨</text>
     <text x="82" y="20" fontSize="12" fill="#fbbf24">✨</text>
   </svg>
@@ -61,36 +45,26 @@ const PANDA_HAPPY_SVG = (
 
 const PANDA_SAD_SVG = (
   <svg viewBox="0 0 100 100" className="w-16 h-16">
-    {/* Kulaklar */}
     <circle cx="22" cy="22" r="14" fill="#1f2937" />
     <circle cx="78" cy="22" r="14" fill="#1f2937" />
-    {/* Yüz */}
     <ellipse cx="50" cy="52" rx="40" ry="36" fill="white" stroke="#e5e7eb" strokeWidth="1" />
-    {/* Göz çevresi siyah alanlar */}
     <ellipse cx="32" cy="45" rx="13" ry="11" fill="#1f2937" />
     <ellipse cx="68" cy="45" rx="13" ry="11" fill="#1f2937" />
-    {/* Göz beyazları */}
     <ellipse cx="32" cy="46" rx="7" ry="8" fill="white" />
     <ellipse cx="68" cy="46" rx="7" ry="8" fill="white" />
-    {/* Göz bebekleri - aşağı bakıyor */}
     <circle cx="32" cy="48" r="4" fill="#1f2937" />
     <circle cx="68" cy="48" r="4" fill="#1f2937" />
-    {/* Göz parıltısı */}
     <circle cx="34" cy="46" r="1.5" fill="white" />
     <circle cx="70" cy="46" r="1.5" fill="white" />
-    {/* Üzgün kaşlar */}
     <path d="M 24 36 L 40 40" stroke="#1f2937" strokeWidth="2" strokeLinecap="round" />
     <path d="M 76 36 L 60 40" stroke="#1f2937" strokeWidth="2" strokeLinecap="round" />
-    {/* Burun */}
     <ellipse cx="50" cy="56" rx="6" ry="4" fill="#1f2937" />
-    {/* Üzgün ağız */}
     <path d="M 42 66 Q 50 60 58 66" stroke="#1f2937" strokeWidth="2" fill="none" strokeLinecap="round" />
-    {/* Gözyaşı */}
     <ellipse cx="25" cy="52" rx="2" ry="4" fill="#60a5fa" opacity="0.8" />
   </svg>
 );
 
-export default function HomePage() {
+function HomeContent() {
   const { theme, toggleTheme } = useTheme();
   const { isAuthenticated, user, login, register, logout } = useAuth();
   const { levels, currentLevel, loading, refreshLevels, isLevelUnlocked } = useData();
@@ -111,9 +85,8 @@ export default function HomePage() {
     if (searchParams.get('auth') === 'required') {
       setShowLoginModal(true);
     }
-  }, [searchParams]);
+  }, [searchParams, refreshLevels]);
 
-  // Refresh levels when page becomes visible (e.g., navigating back from game)
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
@@ -216,7 +189,6 @@ export default function HomePage() {
     <div className="min-h-screen transition-all duration-500"
       style={{ background: 'var(--background)' }}>
       
-      {/* Success Animation Overlay */}
       {showSuccessAnimation && (
         <div className="fixed inset-0 pointer-events-none z-40 flex items-center justify-center">
           <div className="animate-success-burst">
@@ -530,5 +502,29 @@ export default function HomePage() {
         </div>
       )}
     </div>
+  );
+}
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center transition-colors duration-300"
+      style={{ background: 'var(--background)' }}>
+      <div className="text-center">
+        <div className="animate-bounce mb-4">
+          {PANDA_SVG}
+        </div>
+        <div className="text-2xl font-bold animate-pulse" style={{ color: 'var(--foreground)' }}>
+          Yükleniyor...
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <HomeContent />
+    </Suspense>
   );
 }
