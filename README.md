@@ -5,7 +5,9 @@ Duolingo benzeri, AI destekli interaktif İngilizce öğrenme platformu.
 ## Özellikler
 
 - 📚 **Bölüm Bazlı İlerleme**: Sırayla bölümleri tamamla
-- ❓ **Çeşitli Soru Tipleri**: Çoktan seçmeli ve boşluk doldurma
+- ❓ **Çeşitli Soru Tipleri**: Çoktan seçmeli ve boşluk dold
+-
+- urma
 - 🤖 **AI Tutor**: Mistral AI ile İngilizce öğretmen asistanı
 - ⚙️ **Admin Paneli**: Bölüm ve soru yönetimi
 - 📊 **İlerleme Takibi**: localStorage ile seviye kaydetme
