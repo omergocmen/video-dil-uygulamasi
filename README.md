@@ -9,7 +9,7 @@ Duolingo benzeri, AI destekli interaktif İngilizce öğrenme platformu.
 - 🤖 **AI Tutor**: Mistral AI ile İngilizce öğretmen asistanı
 - ⚙️ **Admin Paneli**: Bölüm ve soru yönetimi
 - 📊 **İlerleme Takibi**: localStorage ile seviye kaydetme
-
+  
 ## Kurulum
 
 ### 1. Bağımlılıkları Yükle
